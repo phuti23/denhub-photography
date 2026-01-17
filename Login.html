@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DENHUB PHOTOGRAPHY | Auth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top, #0f2a2f, #050505);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .auth-container {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(15,15,15,0.95);
+      border-radius: 18px;
+      padding: 40px;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.7);
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    .tabs {
+      display: flex;
+      margin-bottom: 25px;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #777;
+      border-bottom: 2px solid transparent;
+      transition: 0.3s;
+    }
+
+    .tab.active {
+      color: #00ff66;
+      border-color: #00ff66;
+    }
+
+    form { display: none; }
+    form.active { display: block; }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 14px;
+      background: #0b0b0b;
+      border: 1px solid #333;
+      border-radius: 10px;
+      color: #fff;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #00ff66;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    .row label {
+      cursor: pointer;
+    }
+
+    .row a {
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    .row a:hover { color: #00ff66; }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #00ff66, #00cc55);
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover { transform: translateY(-1px); }
+
+    .message {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #00ff66;
+      display: none;
+    }
+
+    .back-home {
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    .back-home a {
+      color: #888;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-home a:hover { color: #00ff66; }
+
+  </style>
+</head>
+<body>
+
+<div class="auth-container">
+  <h2>DENHUB ACCESS</h2>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showLogin()">Sign In</div>
+    <div class="tab" onclick="showRegister()">Sign Up</div>
+  </div>
+
+  <!-- SIGN IN -->
+  <form id="loginForm" class="active" onsubmit="login(event)">
+    <input type="email" id="loginEmail" placeholder="Email" required>
+    <input type="password" id="loginPassword" placeholder="Password" required>
+
+    <div class="row">
+      <label><input type="checkbox"> Remember me</label>
+      <a href="#" onclick="showReset()">Forgot password?</a>
+    </div>
+
+    <button type="submit">Sign In</button>
+  </form>
+
+  <!-- SIGN UP -->
+  <form id="registerForm" onsubmit="register(event)">
+    <input type="text" id="regName" placeholder="Full Name" required>
+    <input type="email" id="regEmail" placeholder="Email" required>
+    <input type="password" id="regPass" placeholder="Password" required>
+    <input type="password" id="regConfirm" placeholder="Confirm Password" required>
+    <button type="submit">Create Account</button>
+  </form>
+
+  <!-- RESET -->
+  <form id="resetForm" onsubmit="resetPass(event)">
+    <input type="email" placeholder="Enter your email" required>
+    <button type="submit">Reset Password</button>
+  </form>
+
+  <div class="message" id="msg"></div>
+
+  <div class="back-home">
+    <a href="index.html">← Back to Home</a>
+  </div>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const resetForm = document.getElementById('resetForm');
+  const msg = document.getElementById('msg');
+
+  function resetViews() {
+    loginForm.classList.remove('active');
+    registerForm.classList.remove('active');
+    resetForm.classList.remove('active');
+    msg.style.display = 'none';
+  }
+
+  function showLogin() {
+    tabs[0].classList.add('active');
+    tabs[1].classList.remove('active');
+    resetViews();
+    loginForm.classList.add('active');
+  }
+
+  function showRegister() {
+    tabs[1].classList.add('active');
+    tabs[0].classList.remove('active');
+    resetViews();
+    registerForm.classList.add('active');
+  }
+
+  function showReset() {
+    tabs[0].classList.remove('active');
+    tabs[1].classList.remove('active');
+    resetViews();
+    resetForm.classList.add('active');
+  }
+
+  function login(e) {
+    e.preventDefault();
+    msg.textContent = 'Login successful (demo). Redirecting...';
+    msg.style.display = 'block';
+    setTimeout(() => window.location.href = 'index.html', 1500);
+  }
+
+  function register(e) {
+    e.preventDefault();
+    msg.textContent = 'Account created successfully (demo).';
+    msg.style.display = 'block';
+  }
+
+  function resetPass(e) {
+    e.preventDefault();
+    msg.textContent = 'Password reset link sent (demo).';
+    msg.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

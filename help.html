@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Help & Support</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  background:#0e0e0e;
+  color:#fff;
+  font-family:Inter, sans-serif;
+}
+
+.faq {
+  max-width:800px;
+  margin:120px auto;
+  padding:0 20px;
+}
+
+.faq-item {
+  border-bottom:1px solid #333;
+  padding:20px 0;
+  cursor:pointer;
+}
+
+.faq-question {
+  font-weight:600;
+}
+
+.faq-answer {
+  max-height:0;
+  overflow:hidden;
+  color:#aaa;
+  transition:max-height .3s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height:200px;
+}
+</style>
+</head>
+
+<body>
+
+<section class="faq">
+  <h2>Help & Support</h2>
+
+  <div class="faq-item">
+    <div class="faq-question">How do I book a shoot?</div>
+    <div class="faq-answer">Contact us via WhatsApp or Instagram.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Do you travel?</div>
+    <div class="faq-answer">Yes, travel costs depend on location.</div>
+  </div>
+</section>
+
+<div id="footer"></div>
+
+<script>
+document.querySelectorAll(".faq-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    item.classList.toggle("active");
+  });
+});
+
+fetch("footer.html")
+  .then(res => res.text())
+  .then(data => document.getElementById("footer").innerHTML = data);
+</script>
+
+</body>
+</html>

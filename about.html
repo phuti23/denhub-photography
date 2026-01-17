@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | DENHUB PHOTOGRAPHY</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f2f35;font-family:'Inter',sans-serif;color:#fff}
+
+.hero{padding:80px 20px 40px;text-align:center}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,4rem);letter-spacing:3px}
+
+.nav-wrapper{display:flex;justify-content:center;margin-bottom:60px;position:relative}
+nav{background:rgba(20,60,70,.95);padding:18px 60px;border-radius:50px;display:flex;gap:60px}
+nav a{color:#66ff00;text-decoration:none;font-weight:600}
+
+.hamburger{display:none;position:absolute;right:25px;top:10px;font-size:30px;color:#66ff00;cursor:pointer}
+
+.about{max-width:900px;margin:auto;padding:0 30px 80px}
+.about h2{font-size:2.5rem;margin-bottom:20px;font-family:'Playfair Display',serif}
+.about p{line-height:1.7;margin-bottom:30px;color:#e0e0e0}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.skill{background:#143c46;padding:20px;border-radius:12px}
+.skill h3{color:#66ff00;margin-bottom:10px}
+
+footer{text-align:center;padding:40px;background:#0a2227;color:#aaa}
+
+@media(max-width:768px){
+ nav{display:none;flex-direction:column;gap:20px;padding:25px}
+ .hamburger{display:block}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <h1>ABOUT ME</h1>
+</section>
+
+<div class="nav-wrapper">
+  <nav id="nav">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="login.html">LOGIN</a>
+  </nav>
+  <div class="hamburger" id="hamburger">&#9776;</div>
+</div>
+
+<section class="about">
+  <h2>My Story</h2>
+  <p>
+    I am Denhub, a passionate photographer focused on capturing emotion, stories, and atmosphere.
+    My work blends creativity with technical precision to deliver images that feel cinematic,
+    authentic, and timeless.
+  </p>
+  <p>
+    From portraits and street photography to creative lighting setups, I aim to tell powerful visual
+    stories that connect people to moments.
+  </p>
+
+  <h2>Skills & Expertise</h2>
+  <div class="skills">
+    <div class="skill"><h3>Portrait Photography</h3><p>Studio & natural light portraits</p></div>
+    <div class="skill"><h3>Event Photography</h3><p>Professional coverage & editing</p></div>
+    <div class="skill"><h3>Photo Editing</h3><p>Adobe Lightroom & Photoshop</p></div>
+    <div class="skill"><h3>Creative Direction</h3><p>Concept development & styling</p></div>
+  </div>
+</section>
+
+<footer>© 2026 DENHUB PHOTOGRAPHY</footer>
+
+<script>
+const ham=document.getElementById('hamburger');
+const nav=document.getElementById('nav');
+ham.onclick=()=>{nav.style.display=nav.style.display==='flex'?'none':'flex'}
+</script>
+</body>
+</html>
